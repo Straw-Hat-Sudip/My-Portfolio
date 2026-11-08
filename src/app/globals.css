@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #030303;
+  --surface: #0a0a0c;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --foreground: #f4efe6;
+  --foreground-muted: #949494;
+  --cyber-orange: #ff7043;
+  --cyber-amber: #ff8a50;
+  --cyber-gold: #ffa726;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-cyber-orange: var(--cyber-orange);
+  --color-cyber-amber: var(--cyber-amber);
+  --color-cyber-gold: var(--cyber-gold);
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #030303;
+  color: #f4efe6;
+  scroll-behavior: auto; /* Managed by Lenis */
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #030303;
+  color: #f4efe6;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-dm-sans {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 112, 67, 0.5);
+}
+
+/* Background Cyber Grid Pattern */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-cyber-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Scanline / Holo Animation */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+/* Subtle pulse glow */
+@keyframes cyber-glow {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 15px rgba(43, 131, 234, 0.3));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.6));
+  }
+}
+
+.animate-cyber-glow {
+  animation: cyber-glow 4s ease-in-out infinite;
+}
+
+/* Text selections */
+::selection {
+  background: rgba(43, 131, 234, 0.35);
+  color: #00f0ff;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(10, 14, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(15, 22, 36, 0.85);
+  border-color: rgba(43, 131, 234, 0.4);
+  box-shadow: 0 0 30px rgba(43, 131, 234, 0.15);
+}
+
+/* Sarthak Portfolio Exact 1:1 Glass Navigation */
+.glass-navigation.refined-navigation.navigation {
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+  background: linear-gradient(115deg, #eee4d710, #eee4d703 44%, #c2c9d60b), #11100fb8;
+  border: 1px solid #e7e1d52b;
+  border-radius: 22px;
+  max-width: 1120px;
+  height: 68px;
+  padding: 0 22px 0 28px;
+  transition: transform .34s cubic-bezier(.22,1,.36,1), opacity .25s;
+  box-shadow: inset 0 1px #ffffff1a, inset 0 -1px #ffffff06, 0 12px 36px #0003;
+  position: fixed;
+  top: 16px;
+  left: 24px;
+  right: 24px;
+  margin: 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.glass-navigation[data-hidden="true"] {
+  transform: translateY(calc(-100% - 24px)) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.glass-navigation:before {
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, #0000, #f7f1e34d, #0000);
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+}
+
+.glass-navigation .wordmark {
+  letter-spacing: -.5px;
+  align-items: center;
+  gap: 14px;
+  display: flex;
+  text-decoration: none;
+}
+
+.glass-navigation .nav-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.glass-navigation .nav-identity > span {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 26px;
+  line-height: .95;
+  letter-spacing: -.6px;
+  color: #f4efe6;
+}
+
+.glass-navigation .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.glass-navigation .nav-destination {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: .1px;
+  color: #d5d0c8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: background .2s, color .2s;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.glass-navigation .nav-destination:hover,
+.glass-navigation .nav-destination[aria-current] {
+  color: #fff5e5;
+  background: #e9e3d510;
+  box-shadow: inset 0 1px #ffffff0d;
+}
+
+.glass-navigation .nav-contact {
+  color: #f4e8d5;
+  min-height: 42px;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  background: linear-gradient(140deg, #f6eee32e, #cbbfaa12);
+  border: 1px solid #f1e7d547;
+  border-radius: 13px;
+  box-shadow: inset 0 1px #fff3, 0 2px 8px #0002;
+  gap: 22px;
+  margin-left: 20px;
+  padding: 0 18px;
+  transition: background .25s, color .25s;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.glass-navigation .nav-contact:hover {
+  color: #fff6e8;
+  background: linear-gradient(140deg, #f6eee343, #cbbfaa22);
+}
+
+.glass-navigation .nav-contact svg {
+  transition: transform .25s;
+}
+
+.glass-navigation .nav-contact:hover svg {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 900px) {
+  .glass-navigation.refined-navigation.navigation {
+    border-radius: 19px;
+    height: 62px;
+    padding: 0 19px;
+    top: 12px;
+    left: 14px;
+    right: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .glass-navigation .nav-links {
+    display: none !important;
+  }
+}
